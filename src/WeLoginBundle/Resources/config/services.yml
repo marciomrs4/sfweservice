@@ -1,0 +1,4 @@
+services:
+#    we_login.example:
+#        class: WeLoginBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

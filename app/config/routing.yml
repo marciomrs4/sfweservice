@@ -1,3 +1,7 @@
+we_login:
+    resource: "@WeLoginBundle/Resources/config/routing.yml"
+    prefix:   /
+
 we_service:
     resource: "@WeServiceBundle/Controller/"
     type:     annotation

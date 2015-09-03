@@ -1,0 +1,3 @@
+we_login_homepage:
+    path:     /we/login
+    defaults: { _controller: WeLoginBundle:Default:index }
