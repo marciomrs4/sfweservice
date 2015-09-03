@@ -1,0 +1,6 @@
+we_service_homepage:
+    path:     /1.0/hello/{name}
+    defaults: { _controller: WeServiceBundle:Default:index }
+we_service_dql:
+    path:     /1.0/getuserservice/
+    defaults: { _controller: WeServiceBundle:Default:getUserDql }

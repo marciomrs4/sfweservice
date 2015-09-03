@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+Hello {{ name }}!
+
+    <div>
+        <!--    <button class="btn btn-default" id="cliqueaqui">Clica manolo</button>-->
+
+        <button type="button" id="cliqueaqui" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+            Loading state
+        </button>
+
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ahh manolo</h3>
+            </div>
+            <div class="panel-body">
+
+                <div id="loadheare">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

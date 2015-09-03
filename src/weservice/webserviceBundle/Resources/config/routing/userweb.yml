@@ -1,0 +1,30 @@
+userweb:
+    path:     /
+    defaults: { _controller: "weservicewebserviceBundle:UserWeb:index" }
+
+userweb_show:
+    path:     /{id}/show
+    defaults: { _controller: "weservicewebserviceBundle:UserWeb:show" }
+
+userweb_new:
+    path:     /new
+    defaults: { _controller: "weservicewebserviceBundle:UserWeb:new" }
+
+userweb_create:
+    path:     /create
+    defaults: { _controller: "weservicewebserviceBundle:UserWeb:create" }
+    methods:  POST
+
+userweb_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "weservicewebserviceBundle:UserWeb:edit" }
+
+userweb_update:
+    path:     /{id}/update
+    defaults: { _controller: "weservicewebserviceBundle:UserWeb:update" }
+    methods:  [POST, PUT]
+
+userweb_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "weservicewebserviceBundle:UserWeb:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,46 @@
+weservicewebservice_userweb:
+    resource: "@weservicewebserviceBundle/Resources/config/routing/userweb.yml"
+    prefix:   /userweb
+
+weservicewebservice_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: weservicewebserviceBundle:Default:index }
+weservicewebservice_json:
+    path:     /json
+    defaults: { _controller: weservicewebserviceBundle:Default:json }
+weservicewebservice_users:
+    path:     /users
+    defaults: { _controller: weservicewebserviceBundle:Users:users }
+weservicewebservice_getjson:
+    path:     /getjson/{url}
+    defaults: { _controller: weservicewebserviceBundle:Users:getjson }
+weservicewebservice_receiveform:
+    path:     /receiveform
+    defaults: { _controller: weservicewebserviceBundle:Default:receiverForm }
+weservicewebservice_form:
+    path:     /form
+    defaults: { _controller: weservicewebserviceBundle:Default:form }
+criar:
+    path:     /criar
+    defaults: { _controller: weservicewebserviceBundle:Brito:criar }
+    requirements:
+      _method: POST
+
+receber:
+    path:     /we/receber
+    defaults: { _controller: weservicewebserviceBundle:Brito:receber }
+    requirements:
+      _method: GET
+
+deletar:
+    path:     /we/deletar
+    defaults: { _controller: weservicewebserviceBundle:Brito:deletar }
+auth:
+    path:     /we/authuser
+    defaults: { _controller: weservicewebserviceBundle:Brito:authUser }
+routeauth:
+    path:     /routeauth
+    defaults: { _controller: weservicewebserviceBundle:Default:auth }
+getheaders:
+    path:     /getheaders
+    defaults: { _controller: weservicewebserviceBundle:Default:getHeader }
