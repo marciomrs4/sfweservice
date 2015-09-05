@@ -28,3 +28,15 @@ userweb_delete:
     path:     /{id}/delete
     defaults: { _controller: "weservicewebserviceBundle:UserWeb:delete" }
     methods:  [POST, DELETE]
+userweb_getbyname:
+    path:     /getbyname/{name}
+    defaults: { _controller: "weservicewebserviceBundle:UserWeb:getByName" }
+    methods:  GET
+userweb_login:
+    path:     /login
+    defaults: { _controller: "weservicewebserviceBundle:UserWeb:login" }
+    methods:  GET
+userweb_dologin:
+    path:     /dologin
+    defaults: { _controller: "weservicewebserviceBundle:UserWeb:doLogin" }
+    methods:  POST

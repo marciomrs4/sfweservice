@@ -2,6 +2,7 @@
 
 namespace weservice\webserviceBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -203,6 +204,54 @@ class UserWebController extends Controller
         }
 
         return $this->redirect($this->generateUrl('userweb'));
+    }
+
+    public function getByNameAction(Request $request, $name)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        //$data = $em->getRepository('weservicewebserviceBundle:UserWeb')->findAll();
+
+        $data = $em->createQuery('SELECT p FROM weservicewebserviceBundle:UserWeb p ORDER BY p.nome')
+                   ->setMaxResults(1)
+                   ->getResult();
+
+       return $this->render('weservicewebserviceBundle:UserWeb:getbyname.html.twig', array(
+            'data' => $data));
+
+    }
+
+    public function loginAction()
+    {
+        return $this->render('weservicewebserviceBundle:UserWeb:login.html.twig');
+    }
+
+    public function doLoginAction(Request $request)
+    {
+
+        $dados = $this->get('validation.login')->getValidationLogin($request);
+
+       /* if(('' == $request->get('name')) || ('' == $request->get('password')) ){
+
+            $dados = array(
+                array('geterror'=>'usuário ou senha não informado'));
+
+        }else{
+
+            $token = $this->get('generate.token')->generateNewToken();
+            $dataExperies = $this->get('date.expiries')->getDataExpiries();
+
+            $dados = array(
+                array('nome'=>$request->get('name'),
+                    'senha'=>$request->get('password'),
+                    'wetoken'=>$token,
+                    'dataExperies'=>$dataExperies,
+                    'geterror'=>'not errors foud'));
+        }*/
+
+
+        return new JsonResponse($dados);
+
     }
 
     /**

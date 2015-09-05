@@ -1,3 +1,10 @@
 we_login_homepage:
     path:     /we/login
     defaults: { _controller: WeLoginBundle:Default:index }
+    requirements:
+      _method: GET
+we_login_post:
+    path:     /we/login
+    defaults: { _controller: WeLoginBundle:Default:post }
+    requirements:
+      _method: POST

@@ -11,13 +11,13 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+    <script src="{{ asset('js/jquery-1.11.3.js') }}"></script>
+    <script src="{{ asset('js/my-alert.js') }}"></script>
+    <script src="{{ asset('js/my-loginservice.js') }}"></script>
+
         {% block body %}{% endblock %}
         {% block javascripts %}
 
         {% endblock %}
-
-        <script src="{{ asset('js/jquery-1.11.3.js') }}"></script>
-        <script src="{{ asset('js/my-alert.js') }}"></script>
-
     </body>
 </html>

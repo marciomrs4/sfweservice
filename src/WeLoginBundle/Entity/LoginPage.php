@@ -1,17 +1,16 @@
 <?php
 
-namespace weservice\webserviceBundle\Entity;
+namespace WeLoginBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * UserWeb
+ * LoginPage
  *
- * @ORM\Table(name="user_web")
+ * @ORM\Table()
  * @ORM\Entity
  */
-class UserWeb
+class LoginPage
 {
     /**
      * @var integer
@@ -26,16 +25,13 @@ class UserWeb
      * @var string
      *
      * @ORM\Column(name="nome", type="string", length=255)
-     * @Assert\Length(min=3, groups={"cadastrar"})
-     * @Assert\Length(min=6, groups={"alterar"})
      */
     private $nome;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="senha", type="string", length=255)
-     * @Assert\Length(min=6)
+     * @ORM\Column(name="senha", type="string", length=40)
      */
     private $senha;
 
@@ -54,7 +50,7 @@ class UserWeb
      * Set nome
      *
      * @param string $nome
-     * @return UserWeb
+     * @return LoginPage
      */
     public function setNome($nome)
     {
@@ -77,7 +73,7 @@ class UserWeb
      * Set senha
      *
      * @param string $senha
-     * @return UserWeb
+     * @return LoginPage
      */
     public function setSenha($senha)
     {

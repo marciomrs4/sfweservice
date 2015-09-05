@@ -4,3 +4,9 @@ services:
 #        arguments: [@service_id, "plain_value", %parameter%]
   user.dql:
     class: We\Service\UserDql
+  generate.token:
+    class: We\Service\GenerateToken
+  date.expiries:
+    class: We\Service\GenerateDateExperies
+  validation.login:
+    class: We\Service\ValidationLogin

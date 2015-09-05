@@ -25,13 +25,11 @@ criar:
     defaults: { _controller: weservicewebserviceBundle:Brito:criar }
     requirements:
       _method: POST
-
 receber:
     path:     /we/receber
     defaults: { _controller: weservicewebserviceBundle:Brito:receber }
     requirements:
       _method: GET
-
 deletar:
     path:     /we/deletar
     defaults: { _controller: weservicewebserviceBundle:Brito:deletar }
