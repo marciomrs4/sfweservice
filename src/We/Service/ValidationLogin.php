@@ -12,33 +12,35 @@ namespace We\Service;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use weservice\webserviceBundle\Entity\UserWeb;
 
 class ValidationLogin extends Controller
 {
     public function getValidationLogin(Request $request)
     {
-        if(('' == $request->get('name')) || ('' == $request->get('password')) ){
+        if (('' == $request->get('name')) || ('' == $request->get('password'))) {
 
             return array(
-                        array('geterror'=>'usuário ou senha não informado'));
+                array('geterror' => 'usuário ou senha não informado'));
 
-        }else{
+        } else {
 
-            $getToken = new GenerateToken();
-            $getDate = new GenerateDateExperies();
+                $getToken = new GenerateToken();
+                $getDate = new GenerateDateExperies();
 
-            $token = $getToken->generateNewToken();//$this->get('generate.token')->generateNewToken();
-            $dataExperies = $getDate->getDataExpiries();//$this->get('date.expiries')->getDataExpiries();
+                $token = $getToken->generateNewToken();//$this->get('generate.token')->generateNewToken();
+                $dataExperies = $getDate->getDataExpiries();//$this->get('date.expiries')->getDataExpiries();
 
-            return array(
-                        array('nome'=>$request->get('name'),
-                            'senha'=>$request->get('password'),
-                            'wetoken'=>$token,
-                            'dataExperies'=>$dataExperies,
-                            'geterror'=>'not errors foud'));
-        }
+                return array(
+                    array('nome' => $request->get('name'),
+                        'senha' => $request->get('password'),
+                        'wetoken' => $token,
+                        'dataExperies' => $dataExperies,
+                        'geterror' => 'not errors foud'));
 
+            }
 
     }
+
 
 }

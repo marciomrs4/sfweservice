@@ -212,14 +212,50 @@ class UserWebController extends Controller
 
         //$data = $em->getRepository('weservicewebserviceBundle:UserWeb')->findAll();
 
-        $data = $em->createQuery('SELECT p FROM weservicewebserviceBundle:UserWeb p ORDER BY p.nome')
+        $nome  = 'marcio.ramos';
+        $senha = '1234567';
+
+        $data = $em->createQuery('SELECT p FROM weservicewebserviceBundle:UserWeb p
+                                  WHERE p.senha = :senha
+                                  AND p.nome = :nome')
+                    ->setParameter('nome',$nome)
+                    ->setParameter('senha',$senha)
                    ->setMaxResults(1)
                    ->getResult();
+
+        if($request->isXmlHttpRequest()){
+            return new JsonResponse(array(array('geterror'=>'Ahh manolo')));
+        }
 
        return $this->render('weservicewebserviceBundle:UserWeb:getbyname.html.twig', array(
             'data' => $data));
 
     }
+
+    private function getUserDataBase(Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $nome  = $request->get('name');
+        $senha = $request->get('password');
+
+        $data = $em->createQuery('SELECT p FROM weservicewebserviceBundle:UserWeb p
+                                  WHERE p.senha = :senha
+                                  AND p.nome = :nome')
+            ->setParameter('nome',$nome)
+            ->setParameter('senha',$senha)
+            ->setMaxResults(1)
+            ->getResult();
+
+        if(count($data) == 0){
+            return false;
+        }else{
+            return true;
+        }
+
+
+    }
+
 
     public function loginAction()
     {
@@ -229,28 +265,38 @@ class UserWebController extends Controller
     public function doLoginAction(Request $request)
     {
 
-        $dados = $this->get('validation.login')->getValidationLogin($request);
+        if($this->getUserDataBase($request)) {
 
-       /* if(('' == $request->get('name')) || ('' == $request->get('password')) ){
+            $dados = $this->get('validation.login')->getValidationLogin($request);
 
-            $dados = array(
-                array('geterror'=>'usuário ou senha não informado'));
+            $jsonResponse = new JsonResponse();
+            $jsonResponse->headers->set('wetoken',sha1(date('Y-m-d')));
 
-        }else{
+            $jsonResponse->setData($dados);
 
-            $token = $this->get('generate.token')->generateNewToken();
-            $dataExperies = $this->get('date.expiries')->getDataExpiries();
+            return $jsonResponse;
+        }else {
 
-            $dados = array(
-                array('nome'=>$request->get('name'),
-                    'senha'=>$request->get('password'),
-                    'wetoken'=>$token,
-                    'dataExperies'=>$dataExperies,
-                    'geterror'=>'not errors foud'));
-        }*/
+            /* if(('' == $request->get('name')) || ('' == $request->get('password')) ){
 
+                 $dados = array(
+                     array('geterror'=>'usuário ou senha não informado'));
 
-        return new JsonResponse($dados);
+             }else{
+
+                 $token = $this->get('generate.token')->generateNewToken();
+                 $dataExperies = $this->get('date.expiries')->getDataExpiries();
+
+                 $dados = array(
+                     array('nome'=>$request->get('name'),
+                         'senha'=>$request->get('password'),
+                         'wetoken'=>$token,
+                         'dataExperies'=>$dataExperies,
+                         'geterror'=>'not errors foud'));
+             }*/
+
+           return new JsonResponse(array(array('geterror' => 'User not found')));
+        }
 
     }
 
